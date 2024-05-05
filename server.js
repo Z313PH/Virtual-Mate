@@ -1,25 +1,27 @@
 const express = require('express');
-const bodyParser = require('body-parser');
+const { spawn } = require('child_process');
 
 const app = express();
-const port = process.env.PORT || 3000;
+app.use(express.json());
+const port = 3000;
 
-// Middleware
-app.use(bodyParser.json());
-app.use(express.static('public'));  // Serve static files from 'public' directory
+app.post('/process-text', (req, res) => {
+    const text = req.body.text;
 
-// Routes
-app.get('/', (req, res) => {
-    res.sendFile('index.html', { root: __dirname });
+    const pythonProcess = spawn('python', ['nlp_script.py', text]);
+
+    pythonProcess.stdout.on('data', (data) => {
+        // Capture output from the Python script
+        res.send(data.toString());
+    });
+
+    pythonProcess.stderr.on('data', (data) => {
+        // Capture any errors
+        console.error(`stderr: ${data}`);
+        res.status(500).send('Error processing text');
+    });
 });
 
-app.post('/message', (req, res) => {
-    // Here you will handle incoming messages and send them to Rasa
-    console.log(req.body);
-    res.status(200).json({ message: 'Received' });
-});
-
-// Start the server
 app.listen(port, () => {
-    console.log(`Server is running on http://localhost:${port}`);
+    console.log(`Server running on http://localhost:${port}`);
 });
