@@ -8,7 +8,7 @@ const port = 3000;
 app.post('/process-text', (req, res) => {
     const text = req.body.text;
 
-    const pythonProcess = spawn('python', ['nlp_script.py', text]);
+    const pythonProcess = spawn('python', ['nlp_setup.py', text]);
 
     pythonProcess.stdout.on('data', (data) => {
         // Capture output from the Python script
