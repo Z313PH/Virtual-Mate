@@ -23,6 +23,4 @@ if __name__ == '__main__':
     result = process_text(text)
     print(json.dumps(result)) 
 
-# Example usage
-result = process_text("Apple is looking at buying U.K. startup for $1 billion")
-print(result)
+
