@@ -13,10 +13,13 @@ def process_text(text):
     verbs = [token.lemma_ for token in doc if token.pos_ == "VERB"]
 
     return {
-        "entities": entities,
-        "noun_phrases": noun_phrases,
-        "verbs": verbs
+        "entities": [(ent.text, ent.label_) for ent in doc.ents]
     }
+
+if __name__ == '__main__':
+    text = sys.argv[1]
+    result = process_text(text)
+    print(json.dumps(result)) 
 
 # Example usage
 result = process_text("Apple is looking at buying U.K. startup for $1 billion")
