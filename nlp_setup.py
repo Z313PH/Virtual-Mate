@@ -1,4 +1,6 @@
 import spacy
+import json
+import sys
 
 # Load the language model
 nlp = spacy.load('en_core_web_sm')
