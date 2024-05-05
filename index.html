@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VirtualMate</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="chat-container">
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <h1>VirtualMate</h1>
+                <button id="new-chat">+</button>
+                <button id="toggle-sidebar" onclick="toggleSidebar()">→</button>
+            </div>
+            <ul id="previous-discussions">
+                <!-- Previous discussions will be listed here -->
+            </ul>
+        </div>
+        <div class="chat-area">
+            <div class="message-input">
+                <input type="text" id="chat-input" placeholder="Message VirtualMate">
+                <button onclick="sendMessage()">↑</button>
+            </div>
+            <ul id="chat-messages">
+                <!-- Chat messages will appear here -->
+            </ul>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
