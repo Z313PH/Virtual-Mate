@@ -25,3 +25,5 @@ app.post('/process-text', (req, res) => {
 app.listen(port, () => {
     console.log(`Server running on http://127.0.0.1:3001`);
 });
+// Serve static files from 'public' directory
+app.use(express.static('Virtual-Mate'));
