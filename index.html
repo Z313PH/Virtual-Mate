@@ -29,5 +29,37 @@
         </div>
     </div>
     <script src="script.js"></script>
+    <script>
+        function sendMessage() {
+            const input = document.getElementById('chat-input');
+            const text = input.value;
+    
+            fetch('/process-text', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ text: text })
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Success:', data);
+                displayResponse(data);
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+    
+            input.value = '';  // Clear input box after sending
+        }
+    
+        function displayResponse(data) {
+            const messages = document.getElementById('chat-messages');
+            const messageItem = document.createElement('li');
+            messageItem.textContent = JSON.stringify(data);
+            messages.appendChild(messageItem);
+        }
+    </script>
+    
 </body>
 </html>
